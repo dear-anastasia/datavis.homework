@@ -121,11 +121,13 @@ loadData().then(data => {
             if (d3.select(this).attr('opacity') !== '1') {
                 d3.selectAll('rect').attr('opacity', 0.5);
                 d3.select(this).attr('opacity', 1);
-                scatterPlot.selectAll('circle').attr('opacity', 0);
-                scatterPlot.selectAll('circle').style('opacity', 0);
+
+                d3.selectAll('circle').style('visibility', 'hidden');
                 scatterPlot.selectAll('circle').filter(d => d['region'] === actual.region).style('opacity', 1);
+                d3.selectAll('circle').filter(d => d['region'] === actual.region).style('visibility', 'visible');
             } else {
                 d3.selectAll('rect').attr('opacity', null);
+                d3.selectAll('circle').style('visibility', 'visible');
                 scatterPlot.selectAll('circle').style('opacity', 0.7);
             }
         });
